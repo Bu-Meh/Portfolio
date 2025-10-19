@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bu Meh • Portfolio</title>
+  <meta name="description" content="Portfolio of Bu Meh — analytics, UX, and research projects." />
+  <meta name="author" content="Bu Meh" />
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Bu Meh • Portfolio" />
+  <meta property="og:description" content="Analytics, UX, and research projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/og-image.jpg" />
+  <meta property="og:url" content="https://<your-username>.github.io/" />
+
+  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #121417;
+      --text: #e6e7e9;
+      --muted: #a3a8b3;
+      --brand: #60a5fa;
+      --accent: #a78bfa;
+      --border: rgba(255,255,255,0.08);
+      --ring: rgba(96,165,250,0.35);
+    }
+    :root.light {
+      --bg: #ffffff;
+      --card: #f6f7f9;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --brand: #2563eb;
+      --accent: #7c3aed;
+      --border: rgba(15,23,42,0.08);
+      --ring: rgba(37,99,235,0.25);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,0.15), transparent 60%),
+                  radial-gradient(1000px 500px at 100% 0%, rgba(167,139,250,0.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .nav {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: linear-gradient(135deg, var(--brand), var(--accent)); box-shadow: 0 0 24px var(--ring); }
+    .nav a { color: var(--text); opacity: 0.85; }
+    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0)); color: var(--text); font-weight: 600; }
+    .btn:hover { box-shadow: 0 0 0 4px var(--ring); text-decoration: none; }
+
+    /* Hero */
+    .hero { padding: 80px 24px 32px; text-align: left; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+    h1 { font-family: "Space Grotesk", Inter, system-ui; font-size: clamp(36px, 6vw, 56px); line-height: 1.05; margin: 16px 0 10px; }
+    .lead { font-size: clamp(16px, 2.3vw, 20px); color: var(--muted); max-width: 70ch; }
+    .hero-cta { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 40px; }
+    .card { grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0)); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    @media (min-width: 768px) {
+      .card.span-4 { grid-column: span 4; }
+      .card.span-6 { grid-column: span 6; }
+      .card.span-8 { grid-column: span 8; }
+    }
+    .card h3 { margin: 0 0 8px; font-size: 20px; }
+    .muted { color: var(--muted); }
+    .tag { display: inline-block; font-size: 12px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 999px; margin-right: 6px; margin-top: 8px; }
+
+    /* Project list */
+    .projects { display: grid; gap: 16px; }
+    .project { display: grid; gap: 12px; border: 1px solid var(--border); border-radius: 14px; padding: 16px; background: var(--card); }
+    .project h4 { margin: 0; }
+    .project .meta { font-size: 13px; color: var(--muted); }
+
+    /* Footer */
+    footer { margin: 64px 0 24px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 24px; }
+
+    /* Utilities */
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .spacer { height: 24px; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <a href="#home" class="no-underline" style="font-family: 'Space Grotesk', Inter, system-ui;">Bu Meh</a>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button class="btn" id="themeToggle" type="button" aria-label="Toggle theme">🌗 Theme</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero" aria-labelledby="intro-title">
+      <span class="eyebrow">🎓 Grad Student • Analytics & Research • UNC</span>
+      <h1 id="intro-title">I analyze data, design experiments, and turn messy info into crisp decisions.</h1>
+      <p class="lead">I'm Bu, a graduate student in Applied Statistics & Research Methods. I work across <strong>mixed methods</strong>, <strong>program evaluation</strong>, and <strong>UX/learning design</strong>. Here are selected projects and tools I use day‑to‑day (R, SPSS, SAS, SQL, Excel, NVivo, and more).</p>
+      <div class="hero-cta">
+        <a class="btn" href="#projects">View projects ↗</a>
+        <a class="btn" href="./BuMeh_Resume.pdf" download>Download résumé</a>
+        <a class="btn" href="mailto:youremail@example.com">Email me</a>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title" class="grid">
+      <article class="card span-8">
+        <h3 id="projects-title">Featured projects</h3>
+        <div class="projects">
+          <div class="project">
+            <div class="row" style="justify-content: space-between;">
+              <h4>Sleep Paralysis: Mixed‑Methods Measurement Study</h4>
+              <span class="meta">2025 • R, NVivo, Qualtrics</span>
+            </div>
+            <p>Sequential mixed‑methods design combining interviews and a custom survey. Built a coding framework in NVivo, derived constructs for a quantitative instrument, and ran reliability/validity checks (EFA/CFA, α, ω).</p>
+            <div>
+              <span class="tag">Mixed Methods</span>
+              <span class="tag">Psychometrics</span>
+              <span class="tag">R / NVivo</span>
+              <a class="tag" href="#" aria-label="Open project details">Case study</a>
+            </div>
+          </div>
+          <div class="project">
+            <div class="row" style="justify-content: space-between;">
+              <h4>Gender‑Affirming Care Landscape • Larimer County</h4>
+              <span class="meta">2025 • Tableau, SQL</span>
+            </div>
+            <p>Community‑driven needs assessment, synthesizing survey data and public health sources. Delivered a dashboard and a concise report with practical recommendations for a new nonprofit clinic.</p>
+            <div>
+              <span class="tag">Program Evaluation</span>
+              <span class="tag">Dashboarding</span>
+              <span class="tag">Stakeholder Analysis</span>
+              <a class="tag" href="#" aria-label="Open project details">Dashboard</a>
+            </div>
+          </div>
+          <div class="project">
+            <div class="row" style="justify-content: space-between;">
+              <h4>HLM on Reading Comprehension</h4>
+              <span class="meta">2024 • R (lme4)</span>
+            </div>
+            <p>Two‑level HLM estimating classroom‑level teacher support and student‑level parental involvement effects on reading scores across Colorado high schools (N = 2000).</p>
+            <div>
+              <span class="tag">HLM</span>
+              <span class="tag">R / lme4</span>
+              <span class="tag">Education Analytics</span>
+              <a class="tag" href="#" aria-label="Open project details">Paper</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card span-4" id="skills" aria-labelledby="skills-title">
+        <h3 id="skills-title">Skills & tools</h3>
+        <p class="muted">Stats & ML: R, SAS, SPSS, Python (pandas), HLM, EFA/CFA, GLM, MANCOVA.<br>
+        Data: SQL, Excel/Power Query, Tableau/Power BI, Qualtrics.<br>
+        Qual: NVivo, interview protocol design, coding frameworks.<br>
+        Other: UX research, instructional design.</p>
+      </aside>
+
+      <section class="card span-6" id="about" aria-labelledby="about-title">
+        <h3 id="about-title">About me</h3>
+        <p>I'm a Research Consultant at UNC’s Statistical Lab and a Reisher Scholar. I enjoy translating complex data into clear stories and building practical tools for decision‑makers.</p>
+        <p class="muted">Currently seeking: data analyst / research roles (remote/hybrid OK).</p>
+      </section>
+
+      <section class="card span-6" id="contact" aria-labelledby="contact-title">
+        <h3 id="contact-title">Get in touch</h3>
+        <p>Best way: email. I’m open to collaborations, consulting, and speaking with teams hiring for analytics & research roles.</p>
+        <p>
+          <a class="btn" href="mailto:youremail@example.com">📧 Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+          <a class="btn" href="https://github.com/your-username" target="_blank" rel="noreferrer">💻 GitHub</a>
+        </p>
+      </section>
+    </section>
+
+    <div class="spacer"></div>
+
+    <footer class="container">
+      <small>© <span id="year"></span> Bu Meh. Built with HTML/CSS/JS and hosted on GitHub Pages.</small>
+    </footer>
+  </main>
+
+  <script>
+    // Year stamp
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with local storage
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') root.classList.add('light');
+
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('light');
+      const mode = root.classList.contains('light') ? 'light' : 'dark';
+      localStorage.setItem('theme', mode);
+    });
+
+    // Optional: Smooth scroll for in‑page links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  </script>
+</body>
+</html>
